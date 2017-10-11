@@ -1,0 +1,1 @@
+!function(a){var n=a("#search-btn"),r=a("#search-word");n.on("click",function(){if(""==a.trim(r.val()))return void alert("请输入用户名");var n=a.trim(r.val());a.ajax({url:"/admin/userlist",type:"GET",dataType:"json",data:{key:n}}).done(function(a){});var e=encodeURI("/admin/userlist?key="+n);window.location.href=e})}(jQuery);

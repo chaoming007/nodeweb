@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= mbxtit %></title>
+    <link href="../../public/css/admin.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="../../public/js/html5shiv.min.js"></script>
+    <script src="../../public/js/Respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+
+<!-- 头 start -->
+<% include header.html %>
+<!-- 头 end -->
+
+<!-- 内容 start  -->
+<div class="content">
+
+ <div class="tab-edit-warp">
+
+ <form method="post">
+     <table class="table table-striped">
+           <tr>
+               <td width="150"><span class="t-head">用户名</span></td>
+               <td><span class="t-body"><%= dateinfo.username %><input type="hidden" name="uid" id="uid" value="<%= dateinfo._id %>"> </span></td>
+           </tr>
+             <tr>
+                 <td><span class="t-head">修改密码</span></td>
+                 <td>
+                     <span class="mark-box"><a href="javascript:;" id="changeLink">点击修改密码</a></span>
+                     <span class="t-body">
+                         <input type="text" name="password" style="display:none"  id="password" class="form-control inp-text"  placeholder="请输入要修改的值，不能为空" value="">
+                     </span>
+                 </td>
+             </tr>
+             <tr>
+                 <td><span class="t-head">注册时间</span></td>
+                 <td><span class="t-body"><%= dateinfo.time %></span></td>
+             </tr>
+
+         <tr>
+             <td><span class="t-head">权限级别</span></td>
+             <td>
+                 <div class="t-body">
+                     <input type="text" name="leve" id="leve" class="form-control inp-text cx-small" value="<%= dateinfo.leve %>" >
+                     <span class="mark-box">（>50超级管理员，>10高级管理员，>1普通管理员，=1普通用户）</span>
+                 </div>
+             </td>
+         </tr>
+
+         <tr>
+             <td><span class="t-head">初始化密码</span></td>
+             <td>
+                 <div class="t-body">
+                     <input type="button"  name="initpassword"  class="initpassword" id="initpassword" value="初始化密码"  >
+                     <span class="mark-box">（忘记密码的时候可以初始化密码）</span>
+                 </div>
+             </td>
+         </tr>
+
+
+
+             <tr>
+                 <td><span class="t-head">是否为管理员</span></td>
+                 <td>
+                     <div class="t-body">
+                            <select class="form-control select-sty" name="isset" id="isset">
+                                <% if(dateinfo.isAdmin){ %>
+                                   <option value="1" selected="selected">是管理员</option>
+                                   <option value="2">不是管理员</option>
+                                <% }else{ %>
+                                    <option value="1" >是管理员</option>
+                                    <option value="2" selected="selected">不是管理员</option>
+                                <% } %>
+
+                            </select>
+                            <span class="mark-box">
+                                <% if(dateinfo.isAdmin){ %>
+                                 （现在是管理员）
+                                 <% }else{ %>
+                                    （现在不是管理员）
+                                 <% } %>
+                            </span>
+
+                     </div>
+                 </td>
+             </tr>
+             <tr>
+                 <td colspan="2">
+                     <div class="t-btn">
+                         <input type="submit" class="btn btn-primary" id="subBtn"  value="确认修改">
+                         <span class="btn btn-success succes" id="succBox">修改成功</span>
+                         <a href="/admin/userlist?page=<%= page %>" class="zx-link">不修改返回</a>
+
+                     </div>
+                 </td>
+
+             </tr>
+     </table>
+</form>
+
+ </div>
+
+
+
+
+
+
+
+</div>
+
+<!-- 内容 end -->
+
+
+
+
+
+<script type="text/javascript" src="../../public/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../public/js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= mbxtit %></title>
+    <link href="../../public/css/admin.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="../../public/js/html5shiv.min.js"></script>
+    <script src="../../public/js/Respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+
+<!-- 头 start -->
+<% include header.html %>
+<!-- 头 end -->
+
+<!-- 内容 start  -->
+<div class="content">
+
+ <div class="tab-edit-warp">
+
+ <form method="post">
+     <table class="table table-striped">
+           <tr>
+               <td width="150"><span class="t-head">用户名</span></td>
+               <td><span class="t-body"><%= dateinfo.username %><input type="hidden" name="uid" id="uid" value="<%= dateinfo._id %>"> </span></td>
+           </tr>
+             <tr>
+                 <td><span class="t-head">密码</span></td>
+                 <td>
+                     <span class="t-body">
+                         *******************
+                        <!--<%= dateinfo.password %>-->
+                     </span>
+                 </td>
+             </tr>
+             <tr>
+                 <td><span class="t-head">注册时间</span></td>
+                 <td><span class="t-body"><%= dateinfo.time %></span></td>
+             </tr>
+             <tr>
+                 <td><span class="t-head">是否为管理员</span></td>
+                 <td>
+                     <div class="t-body">
+                            <span class="mark-box">
+                                <% if(dateinfo.isAdmin){ %>
+                                 （是管理员）
+                                 <% }else{ %>
+                                    （不是管理员）
+                                 <% } %>
+                            </span>
+
+                     </div>
+                 </td>
+             </tr>
+             <tr>
+                 <td colspan="2">
+                     <div class="t-btn">
+                         <input type="submit" class="btn btn-primary" id="delBtn"  value="确认删除">
+                         <span class="btn btn-success succes" id="succBox">删除成功</span>
+                         <a href="/admin/userlist?page=<%= page %>" class="zx-link">不删除返回</a>
+
+                     </div>
+                 </td>
+
+             </tr>
+     </table>
+</form>
+
+ </div>
+
+
+
+
+
+
+
+</div>
+
+<!-- 内容 end -->
+
+
+
+
+
+<script type="text/javascript" src="../../public/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../public/js/admin.js"></script>
+
+</body>
+</html>

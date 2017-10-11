@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= mbxtit %></title>
+    <link href="../../public/css/admin.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="../../public/js/html5shiv.min.js"></script>
+    <script src="../../public/js/Respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+
+<!-- 头 start -->
+<% include header.html %>
+<!-- 头 end -->
+
+<!-- 内容 start  -->
+<div class="content">
+
+ <div class="tab-edit-warp">
+
+ <form method="post" id="sortAddForm">
+     <table class="table table-striped">
+           <tr>
+               <td width="150"><span class="t-head">分类名称</span></td>
+               <td>
+                    <div class="t-body t-rq"><input type="text" name="sortname" id="sortname" class="form-control inp-text" value="" placeholder="请输入分类名称">
+                        <div class="t-body t-rq t-ts" id="sortts">
+                            
+                         </div>
+                   </div>
+              </td>
+           </tr>
+           
+          
+             <tr>
+                 <td><span class="t-head">分类级别</span></td>
+                 <td>
+                     <div class="t-body t-rq">
+                        
+                         <input type="text" name="sortleve" id="sortleve" class="form-control inp-text" value="" placeholder="请输入分类级别">
+                          <div class="t-body t-rq t-ts" style="color:#999999">
+                            （默认级别为1）
+                         </div>
+
+                     </div>
+                 </td>
+             </tr>
+             <tr>
+                 <td colspan="2">
+                     <div class="t-btn">
+                         <input type="submit" class="btn btn-primary" id="sortAdd"  value="确认添加">
+                         <span class="btn btn-success succes" id="succBox">添加成功</span>
+                         <a href="/admin/sortlist" class="zx-link">不添加返回</a>
+
+                     </div>
+                 </td>
+
+             </tr>
+     </table>
+</form>
+
+ </div>
+
+
+
+
+
+
+
+</div>
+
+<!-- 内容 end -->
+
+
+
+
+
+<script type="text/javascript" src="../../public/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../public/js/admin.js"></script>
+
+</body>
+</html>

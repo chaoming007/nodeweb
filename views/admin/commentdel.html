@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= mbxtit %></title>
+    <link href="../../public/css/admin.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="../../public/js/html5shiv.min.js"></script>
+    <script src="../../public/js/Respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+
+<!-- 头 start -->
+<% include header.html %>
+<!-- 头 end -->
+
+<!-- 内容 start  -->
+<div class="content">
+
+        <div class="comment-cont">
+                <div class="new-tit">
+                    <h2><a href="/newdetail?id=<%= dat[0].news._id %>" target="_blank"><%= dat[0].news.title %></a></h2>
+                </div>
+
+                <div class="del-link">
+                    <input type="hidden" value="<%= page %>" id="pagebox" >
+                    <input type="hidden" value="<%= dat[0].news._id %>" id="newId">
+                    <a href="javascript:;" id="delCommend">删除该新闻下的所有评论</a>
+                    <span>
+                        <a href="/admin/commentlist">返回评论列表&gt;&gt;</a>
+                    </span>
+                </div>
+
+                <!-- 内容 start -->
+                    <div class="comment-box">
+
+
+                        <% for(var i in dat){%>
+
+                         <div class="comment-list">
+                               <a href="javascript:;" class="del-btn">删除<input type="hidden" value="<%= dat[i]._id %>" class="bId"></a>
+                                <p class="t-p">
+                                    <span class="name"><%= dat[i].user.username %></span>
+                                    <span class="time"><%= dat[i].date %></span>
+                                </p>
+                                 <div class="c">
+                                     <%= dat[i].content %>
+                                 </div>
+                                  <ul class="hf-list">
+
+
+                                      <% for(var j=0;j < dat[i].reply.length;j++){ %>
+
+                                                <li>
+                                                    <div class="h-txt">
+                                                        <p class="from">
+                                                            <span><%= dat[i].reply[j].from.username %></span> 回复
+                                                            <span><%= dat[i].reply[j].to.username %></span></p>
+                                                        <p class="cont">
+                                                            <%= dat[i].reply[j].content %>
+                                                        </p>
+                                                        <p class="t"><%= dat[i].reply[j].tim %></p>
+
+                                                    </div>
+                                                </li>
+
+                                      <% } %>
+
+
+                                  </ul>
+
+                         </div>
+
+                        <% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                <!-- 内容 end -->
+        </div>
+
+</div>
+
+<!-- 内容 end -->
+
+
+
+<script type="text/javascript" src="../../public/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../public/js/sel_comment.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!-- top bar -->
+<header class="top-nav">
+	<div class="ind-link">
+		<a href="/">网站首页</a>
+	</div>
+	<div class="log-link-box">
+		<% if(reponseJson.cookieJson._id){%>
+		<span id="logLinkBox">欢迎，<a href="/admin" class="userNameBox"><%=reponseJson.cookieJson.username %></a> 登陆! <a href="javascript:;" class="quitLink">退出</a></span>
+		<% }else{%>
+		<a href="javascript:;" id="loginLink">马上登陆</a>
+		<% }%>
+	</div>
+
+
+</header>
+
+<!-- top bar -->

@@ -1,0 +1,38 @@
+<!-- 分页 start -->
+
+<% if(page.pageinfo){%>
+<div class="page-error">没有记录！</div>
+<% } %>
+
+<% if(!page.pageinfo){%>
+
+<div class="page-box">
+    <nav>
+        <ul class="pager">
+            <li class="previous">
+                <% if(page.currentPage>1){ %>
+                 <a href="/admin/<%= pagepath %>?page=1<%= urlclass %>" >首页</a>
+                <a href="/admin/<%= pagepath %>?page=<%= page.prevPage %><%= urlclass %>" >← 上一页</a>
+                <% }else{ %>
+                <span>首页</span>
+                <span>← 上一页</span>
+                <% } %>
+            </li>
+            <li class="next">
+                <% if( page.currentPage < page.pageNum){ %>
+                <a href="/admin/<%= pagepath %>?page=<%= page.pageNum %><%= urlclass %>">尾页</a>
+                <a href="/admin/<%= pagepath %>?page=<%= page.nextPage %><%= urlclass %>">下一页 →</a>
+
+                <% }else{ %>
+                <span>尾页</span>
+                <span>下一页 →</span>
+                <% } %>
+            </li>
+        </ul>
+        <span class="num-box">共有<i><%= page.counts %></i>条记录，每页显示<i><%= page.limitNum %></i>条记录，共<i><%= page.pageNum %></i>页，当前是第<i><%= page.currentPage %></i>页</span>
+    </nav>
+</div>
+
+
+<% } %>
+<!-- 分页 end  -->

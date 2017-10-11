@@ -1,0 +1,1 @@
+!function(i){i("#imgListBox").on("submit",function(){var n=0;if(i("[name='imgs']").each(function(t){i(this).prop("checked")&&(n+=1)}),0==n)return alert("你没有选择要删除的条目"),!1})}(jQuery);

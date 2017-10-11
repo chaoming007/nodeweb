@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= mbxtit %></title>
+    <link href="../../public/css/admin.css" rel="stylesheet" type="text/css">
+      <!--[if lt IE 9]>
+    <script src="../../public/js/html5shiv.min.js"></script>
+    <script src="../../public/js/Respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- 头 start -->
+<% include header.html %>
+<!-- 头 end -->
+
+
+
+<!-- 内容 start  -->
+<div class="content">
+
+    <div class="addnew-content focus-content">
+            <table class="table table-striped">
+                <tbody>
+                        <tr>
+                            <td colspan="2" class="img-b"><span class="t-head">焦点图片：</span></td>
+                            <td colspan="5" class="img-b">
+                                <div class="img-load">
+                                    <div class="t-body t-rq">
+                                        <form id="imgLoadForm" method="post" name="imgLoadForm" active="javascript:;" enctype="multipart/form-data">
+                                            <input type="file" name="imgFile" id="imgFile">
+                                            <input type="button" name="upImgBtn" id="upImgBtn" class="btn btn-primary" value="点击上传">
+                                        </form>
+                                    </div>
+                                    <div class="t-body t-rq t-ts">
+                                        （上传的图片格式是jpg,png,gif,并且不能大于1M）
+                                    </div>
+                                </div>
+                                <div class="img-look" id="imgLook">
+                                        <% if(data.src){ %>
+                                        <img src="<%= data.src %>" alt="">
+                                        <% }else{ %>
+                                        <img src="/public/images/mrt_img.jpg" alt="">
+                                        <% } %>
+                                        <input type="hidden" value="<%= data.src %>" id="imgLookSrc">
+                                </div>
+                            </td>
+                        </tr>
+                       <tr>
+                            <td colspan="2"><span class="t-head">图片标题：</span></td>
+                            <td colspan="5">
+                                    <div class="t-body t-rq">
+                                        <input type="hidden" name="id" id="id" value="<%= data.id %>">
+                                        <input type="text" name="title" id="title" class="form-control inp-text tit" value="<%= data.title %>" placeholder="请输入图片标题">
+                                    </div>
+                            </td>
+                       </tr>
+                       <tr>
+                           <td colspan="2"><span class="t-head">链接地址：</span></td>
+                           <td colspan="5">
+                               <div class="t-body t-rq">
+                                   <input type="text" name="link" id="link" class="form-control inp-text tit" value="<%= data.link %>" placeholder="图片链接地址">
+                               </div>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td colspan="2"><span class="t-head">显示级别：</span></td>
+                           <td colspan="5">
+                               <div class="t-body t-rq">
+                                   <input type="text" name="show" id="show" class="form-control inp-text small" value="<%= data.show %>" placeholder="显示级别">
+                               </div>
+                           </td>
+                       </tr>
+
+                </tbody>
+
+            </table>
+
+        <div class="sub-new-box">
+
+            <% if(data.id){ %>
+            <a href="javascript:;" class="btn btn-primary" id="gxpubBtn" >马上更新</a>
+            <div class="btn btn-success succes" id="gxsuccBox" >更新成功</div>
+
+            <% }else{%>
+            <a href="javascript:;" class="btn btn-primary" id="pubBtn" >马上发布</a>
+            <div class="btn btn-success succes" id="succBox" >发布成功</div>
+            <% } %>
+
+            <a href="/admin/focuslist" class="back">直接返回</a>
+            <input type="hidden" name="page" id="page" value="1">
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+
+<!-- 内容 end -->
+
+<script type="text/javascript" src="../../public/js/jquery-3.1.1.min.js"></script>
+<script src="../../public/js/focusadd.js" type="text/javascript" ></script>
+
+</body>
+</html>

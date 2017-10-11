@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= newdat.title %></title>
+
+    <link href="../public/css/main.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="../public/js/html5shiv.min.js"></script>
+    <script src="../public/js/Respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<!-- 内容 start -->
+
+<% include topbar.html %>
+
+
+<!--广告 start -->
+<div class="adv-box">
+    <a href="#"><img src="../public/images/adv_1200_100.jpg" alt="" ></a>
+
+</div>
+
+<!-- 广告 end  -->
+
+
+
+
+<!--  nav start -->
+<div class="nav-box">
+    <nav class="nav">
+        <ul>
+            <li><a href="newlist">全部分类</a></li>
+            <% for(var key in sortlist){%>
+              <li><a href="newlist?kw=<%= sortlist[key]._id %>"><%= sortlist[key].sortname %></a></li>
+            <% } %>
+
+        </ul>
+    </nav>
+</div>
+<!-- nav end -->
+
+
+
+ <section class="content  clearfix">
+
+    <!-- 左边 start -->
+      <div class="col-con-lef">
+
+
+             <!-- 新闻详情 start -->
+
+             <article class="new-article">
+                  <div class="new-warp">
+                        <!--标题 start -->
+                            <div class="tit-box">
+                                <h1><%= newdat.title %></h1>
+                                <p class="new-info">
+                                     <span><%= newdat.time %></span>
+                                    <span>来源：<%= newdat.source %></span>
+                                    <span>评论：<a href="#CF" name="CF"><%= commentCountNum %></a></span>
+                                </p>
+                            </div>
+
+                         <!-- 标题 end  -->
+                         <!-- 内容 start -->
+                         <div class="content-box">
+
+                             <%- newdat.content %>
+
+                         </div>
+                         <div class="b-info-box">
+                             <span>作者：<%= newdat.author %></span>
+                         </div>
+
+                      <!-- 内容 end -->
+                  </div>
+
+             </article>
+
+            <!-- 新闻详情 end  -->
+
+            <!-- 评论 start   -->
+            <div class="commend-box" name="CF">
+                <!-- 输入框 start  -->
+                 <div class="hf-box">
+                        <div class="subSuccess" id="subSuccessObj">发表成功</div>
+                        <textarea class="inp-box" id="commentTxt" placeholder="请输入评论内容" ></textarea>
+                        <div class="inp-btn">
+                              <span class="user-box" id="zts-wrap">
+                                  <% if(reponseJson.cookieJson._id){%>
+                                     <em class="user-txt">欢迎 <a href="#"><%= reponseJson.cookieJson.username%></a>  发表评论</em>
+                                  <%}else{%>
+                                     <span class="ts-txt">请先 <a href="javascript:;" data-log='log' >登录</a> 在发表评论</span>
+                                  <% } %>
+
+                                  <input type="hidden" name="userId" id="userId" value="<%= reponseJson.cookieJson._id %>">
+                                  <input type="hidden" name="commentusername" id="commentusername" value="<%= reponseJson.cookieJson.username%>">
+                                   <input type="hidden" name="newId" id="newId" value="<%= newdat._id %>">
+                              </span>
+                              <a href="javascript:;" class="btn btn-success add-img-btn" id="commentBtn">发表评论</a>
+                        </div>
+
+                 </div>
+
+
+                <!-- 输入框 end  -->
+
+                <!-- 评论列表 start  -->
+                 <div class="comment-list" id="commentList">
+
+                         <% if(!commentdat[0]){%>
+                            <div class="no-comment">还没有评论，马上发评论抢占沙发吧~~</div>
+                         <%}%>
+
+                          <!--  -->
+                          <% for(var i in commentdat){%>
+
+                            <div class="comment-row">
+                                    <span class="user-img"><a href="#"><img src="../public/images/1.jpg" alt="" ></a></span>
+                                    <div class="user-txt">
+                                            <p class="p-msg">
+                                                <span class="name"><a href="#"><%=commentdat[i].user.username  %></a></span>
+                                                <span class="time"><%= commentdat[i].date %></span>
+                                            </p>
+                                            <div class="content-txt">
+                                                <%= commentdat[i].content %>
+                                            </div>
+                                            <div class="info-box">
+                                               
+                                                <a href="javascript:;" id="replyBtn" class="replyBtn">
+                                                 <input type="hidden" name="newCommentId" class="newCommentId" value="<%= newdat._id %>">
+                                                 <input type="hidden" name="mainCommendId" class="mainCommendId" value="<%= commentdat[i]._id %>">
+                                                <input type="hidden" name="userId" class="userId" value="<%= commentdat[i].user._id %>">
+                                                <input type="hidden" name="fusername" class="fusername" value="<%= commentdat[i].user.username %>">
+                                                <input type="hidden" name="formId" class="formId" value="<%= reponseJson.cookieJson._id %>">
+                                                    回复</a>
+                                            </div>
+                                            <!-- 子回复框 start  -->
+                                                <div class="child-comment-box">
+                                                    
+
+                                                </div>
+
+                                            <!-- 子回复框 end -->
+
+                                        <!-- 回复 start  -->
+                                        
+
+                                        <% commentdat[i].reply.forEach(function(item,ind){%>
+
+                                            <div class="qt-commtent">
+                                                       <p class="p-msg">
+                                                           <span class="name"><em><a href="#"><%= item.from.username %></a></em> &nbsp;&nbsp;回复&nbsp;&nbsp;<em><a href="#"><%= item.to.username %></a></em></span>
+                                                           <span class="time"><%= item.tim %></span>
+                                                           
+                                                       </p>
+                                                       <div class="content-txt">
+                                                           <%= item.content %>
+                                                       </div>
+                                                        <div class="info-box">
+                                                                  <a href="javascript:;" class="zreplyBtn">
+
+                                                <input type="hidden" name="newCommentId" class="newCommentId" value="<%= newdat._id %>">
+                                                 <input type="hidden" name="mainCommendId" class="mainCommendId" value="<%= commentdat[i]._id %>">
+                                                <input type="hidden" name="userId" class="userId" value="<%= item.from._id %>">
+                                               <input type="hidden" name="fusername" class="fusername" value="<%= item.from.username %>">
+                                                <input type="hidden" name="formId" class="formId" value="<%= reponseJson.cookieJson._id %>">
+
+                                                                    回复</a>
+                                                          </div>
+                                           </div>
+
+                                       <% }) %>
+                              
+                                     <!-- 回复 end  -->
+                                           
+
+                                    </div>
+
+                            </div>
+
+                          <% } %>
+                          <!--  -->
+
+                    
+
+                 </div>
+
+                <!-- 评论列表 end -->
+
+            </div>
+
+            <!-- 评论 end  -->
+
+          <!-- 为您推荐有图 start -->
+            <div class="choose-img-box">
+                <h2>热点推荐</h2>
+                <ul>
+                    <% for(var i in dImg){%>
+                        <li>
+                            <div class="img-box"><a href="newdetail?id=<%= dImg[i]._id %>"><img src="<%= dImg[i].newImg %>" alt=""></a></div>
+                            <div class="txt-box">
+                                <h3><a href="newdetail?id=<%= dImg[i]._id %>"><%= dImg[i].title %></a></h3>
+                                 <div class="msg-box">
+                                     <span><%= dImg[i].newclass.sortname %></span>
+                                     <span><%= dImg[i].tim %></span>
+                                 </div>
+                            </div>
+                        </li>
+                    <% } %>
+
+
+                </ul>
+
+            </div>
+
+          <!-- 为您推荐有图 end -->
+
+          <!-- 为您推荐 start -->
+
+            <div class="choose-txt-box">
+                <ul>
+                    <% for(var i in hotdat){%>
+                      <li>
+                          <span><a href="newdetail?id=<%= hotdat[i]._id %>"><%= hotdat[i].title %></a></span>
+                          <i><%= hotdat[i].tim %></i>
+                      </li>
+                    <% }%>
+                </ul>
+
+            </div>
+
+          <!-- 为您推荐 end -->
+
+          <!-- 广告2 start -->
+
+            <div class="adv-box-s">
+
+                <a href="#"><img src="../public/images/adv_1200_100.jpg" alt=""></a>
+            </div>
+
+
+          <!-- 广告2 end -->
+
+      </div>
+
+     <!-- 左边 end -->
+
+     <!-- 右边 start -->
+     <aside class="col-con-rig">
+
+
+
+
+     </aside>
+
+
+     <!-- 右边 end -->
+
+ </section>
+
+
+
+<!-- 内容 end -->
+
+<!-- 底部 start  -->
+
+<% include footer.html %>
+
+
+<!-- 底部 end -->
+
+
+<% include login.html %>
+
+
+
+<script type="text/javascript" src="../public/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../public/js/reg.js"></script>
+<script type="text/javascript" src="../public/js/comment.js"></script>
+
+</body>
+</html>

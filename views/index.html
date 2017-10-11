@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+
+    <link href="../public/css/main.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="../public/js/html5shiv.min.js"></script>
+    <script src="../public/js/Respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<!-- 内容 start -->
+
+<% include topbar.html %>
+
+
+<!-- 焦点图 start -->
+
+<article class="focus-box">
+
+    <div class="slide-box" id="slideTest1">
+
+        <div class="slide-box-bg">
+            <ul class="slide-box-big">
+              <% for(var i in focusdat){ %>
+                  <li>
+                      <a href="<%= focusdat[i].link %>" target="_blank">
+                            <img src="<%= focusdat[i].src %>" alt="">
+                            <div class="tit-box">
+                               <span class="txt-box"><%= focusdat[i].title %></span>
+                                <span class="bg-box"></span>
+                            </div>
+
+                      </a>
+                  </li>
+                <% } %>
+               
+            </ul>
+        </div>
+
+    </div>
+
+
+</article>
+
+
+
+<!-- 焦点图 end -->
+
+ <section class="content clearfix">
+
+
+    <!-- 左边 start -->
+      <div class="col-con-lef">
+
+
+
+              <!--  nav start -->
+               <nav class="nav">
+                    <ul>
+                        <li><a href="newlist" class="current">全部分类</a></li>
+                        <% for(var key in sortlist){%>
+                            <li><a href="newlist?kw=<%= sortlist[key]._id %>"><%= sortlist[key].sortname %></a></li>
+                        <% } %>
+
+                    </ul>
+               </nav>
+
+              <!-- nav end -->
+
+             <div class="cont-lef-box">
+
+                 <!-- 新闻列表 start -->
+                    <% include list_part.html %>
+
+                <!-- 新闻列表 end  -->
+
+             </div>
+
+      </div>
+
+     <!-- 左边 end -->
+
+     <!-- 右边 start -->
+     <aside class="col-con-rig">
+
+          <section class="rig-col-box">
+            <!-- 广告 1-->
+               <div class="adv-side-box1">
+                   <a href="#"><img src="../public/images/js_1_img.png" alt=""></a>
+               </div>
+
+            <!-- 广告 2 -->
+
+              <!-- 热门文章 start -->
+                <div class="side-line-box">
+                    <h3>热门文章</h3>
+                    <ul>
+                        <% for(var i in hotarticle){
+                            var j=parseInt(i)+1;
+                        %>
+                          <li><a href="newdetail?id=<%= hotarticle[i]._id  %>"><%= j %>. <%= hotarticle[i].title %></a> </li>
+                        <% } %>
+
+                    </ul>
+
+
+                </div>
+
+
+              <!-- 热门文章 end  -->
+
+              <!-- 最新文章 start -->
+              <div class="side-line-box">
+                  <h3>最新文章</h3>
+                  <ul>
+                      <% for(var i in newarticle){
+                      var j=parseInt(i)+1;
+                      %>
+                      <li><a href="newdetail?id=<%= newarticle[i]._id  %>"><%= j %>. <%= newarticle[i].title %></a> </li>
+                      <% } %>
+
+                  </ul>
+
+
+              </div>
+
+
+              <!-- 最新文章 end  -->
+
+
+          </section>
+
+     </aside>
+
+     <!-- 右边 end -->
+
+ </section>
+
+<!-- 底部 start  -->
+
+<% include footer.html %>
+
+
+<!-- 底部 end -->
+
+
+<!-- 内容 end -->
+
+
+<% include login.html %>
+
+
+
+
+<script type="text/javascript" src="../public/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../public/js/reg.js"></script>
+<script type="text/javascript" src="../public/js/slide.js"></script>
+<script type="text/javascript">
+    $("#slideTest1").yicheFoucs();
+</script>
+</body>
+</html>

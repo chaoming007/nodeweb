@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= mbxtit %></title>
+    <link href="../../public/css/admin.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="../../public/js/html5shiv.min.js"></script>
+    <script src="../../public/js/Respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+
+<!-- 头 start -->
+<% include header.html %>
+<!-- 头 end -->
+
+<!-- 内容 start  -->
+<div class="content">
+
+ <div class="tab-edit-warp" id="addUserBox">
+
+ <form method="post" id="formBox">
+     <table class="table table-striped">
+           <tr>
+               <td width="150"><span class="t-head">用户名</span></td>
+               <td>
+                    <div class="t-body t-rq">
+                       <input type="text" name="username" id="username" class="form-control inp-text u" value="" placeholder="请输入用户名">
+                   </div>
+                   <div class="t-body t-rq t-ts" id="usernamets">
+
+                      </div>
+              </td>
+           </tr>
+             <tr>
+                 <td><span class="t-head">密码</span></td>
+                 <td>
+                     <div class="t-body t-rq">
+                         <input type="text" name="password" id="password" class="form-control inp-text p" value="" placeholder="请输入密码">
+                     </div>
+                      <div class="t-body t-rq t-ts" id="passwordts">
+
+                      </div>
+
+                 </td>
+             </tr>
+              <tr>
+                 <td><span class="t-head">重复密码</span></td>
+                 <td>
+                     <div class="t-body t-rq">
+                         <input type="text" name="vpassword" id="vpassword" class="form-control inp-text vp" value="" placeholder="请重复密码">
+                     </div>
+                     <div class="t-body t-rq t-ts" id="vpasswordts">
+
+                      </div>
+                 </td>
+             </tr>
+             
+             <tr>
+                 <td><span class="t-head">权限级别</span></td>
+                 <td>
+                   
+                 <div class="t-body">
+                     <input type="text" name="leve" id="leve" class="form-control inp-text cx-small" placeholder="默认1" value="" >
+                     <span class="mark-box">（>50超级管理员，>10高级管理员，>1普通管理员，=1普通用户）</span>
+                 </div>
+            
+                 </td>
+             </tr>
+             
+             
+            
+             <tr>
+                 <td><span class="t-head">是否为管理员</span></td>
+                 <td>
+                     <div class="t-body">
+                            <select class="form-control select-sty" name="isset" id="isset">                               
+                                    <option value="1" >是管理员</option>
+                                    <option value="2" selected="selected">不是管理员</option>
+                            </select>
+                        
+
+                     </div>
+                 </td>
+             </tr>
+             <tr>
+                 <td colspan="2">
+                     <div class="t-btn">
+                         <input type="submit" class="btn btn-primary" id="addBtn"  value="确认添加">
+                         <span class="btn btn-success succes" id="succBox">添加成功</span>
+                         <a href="/admin/userlist?page=<%= page.currentPage %>" class="zx-link">不添加返回</a>
+
+                     </div>
+                 </td>
+
+             </tr>
+     </table>
+</form>
+
+ </div>
+
+
+
+
+
+
+
+</div>
+
+<!-- 内容 end -->
+
+
+
+
+
+<script type="text/javascript" src="../../public/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../public/js/admin.js"></script>
+
+</body>
+</html>

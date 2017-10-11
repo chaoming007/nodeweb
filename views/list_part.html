@@ -1,0 +1,31 @@
+<!-- 新闻列表 start -->
+<section class="new-section">
+    <ul>
+        <% for(var i in newdat){%>
+            <li class="clearfix">
+                <div class="img-box"><a href="/newdetail?id=<%= newdat[i]._id %>"><img src="<%= newdat[i].newImg %>" alt=""></a></div>
+                <div class="txt-box">
+                        <div class="h-tit">
+                            <h2><a href="/newdetail?id=<%= newdat[i]._id %>"><%= newdat[i].title %></a></h2>
+                        </div>
+                        <div class="new-intro">
+                            <%= newdat[i].intro %><a href="/newdetail?id=<%= newdat[i]._id %>">[详情]</a>
+                        </div>
+                        <div class="msg-box">
+                            <span>分类：<a href=" newlist?kw=<%= newdat[i].newclass._id %>"><%= newdat[i].sort %></a></span>
+                            <span>发布者：<%= newdat[i].author %></span>
+                            <span>发布时间：<%= newdat[i].time %></span>
+                            <span>评论数：<%= newdat[i].commentnum %></span>
+                            <span>阅读量：<%= newdat[i].looknum %></span>
+                        </div>
+                </div>
+            </li>
+        <% } %>
+
+
+
+
+    </ul>
+
+</section>
+<!-- 新闻列表 end -->

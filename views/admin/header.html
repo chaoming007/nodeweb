@@ -1,0 +1,31 @@
+<!--header start -->
+<header class="header">
+    <h1><a href="/admin/">管理中心</a></h1>
+    <!-- 导航 start -->
+    <nav class="nav">
+        <ul>
+            <li><a href="/admin/">管理首页</a></li>
+            <li><a href="/admin/newlist/">文章管理</a></li>
+            <li><a href="/admin/commentlist/">评论管理</a></li>
+            <li><a href="/admin/focuslist/">焦点图管理</a></li>
+            <% if(userinfo.leve>10) {%>
+            <li><a href="/admin/userlist/">用户管理</a></li>
+            <li><a href="/admin/sortlist/">分类管理</a></li>
+            <%}%>
+        </ul>
+    </nav>
+    <!-- 导航 end -->
+    <div class="quit">欢迎管理员&nbsp;<em><%= userinfo.username %></em>&nbsp;登陆，<a href="/">退出</a></div>
+</header>
+<!-- header end -->
+
+<!-- 面包屑 start -->
+<div class="mbx-box">
+    <ol class="breadcrumb">
+        <li class="active"><%= mbxtit %></li>
+        <% if(useradd) {%>
+             <li class="useradd"><a href="/admin/useradd?page=<%= page.currentPage %>" class="btn btn-success">增加用户</a></li>
+        <% } %>
+    </ol>
+</div>
+<!-- 面包屑 end -->
